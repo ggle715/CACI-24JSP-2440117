@@ -1,0 +1,77 @@
+.board-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.write-btn {
+    padding: 10px 20px;
+    background-color: #ff9999;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.write-btn:hover {
+    background-color: #ff6666;
+    box-shadow: 0 2px 8px rgba(255, 102, 102, 0.3);
+}
+
+.board-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.board-list th,
+.board-list td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.board-list th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+.board-list tr:hover {
+    background-color: #fff5f5;
+    cursor: pointer;
+}
+
+.board-list td:nth-child(2) {
+    text-align: left;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.page-btn {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.page-btn:hover,
+.page-btn.active {
+    background-color: #ff9999;
+    color: white;
+    border-color: #ff9999;
+}

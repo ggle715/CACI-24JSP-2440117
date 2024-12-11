@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div class="login-box">
+        <form class="login-form" id="signupForm">
+            <div class="input-group">
+                <input type="text" id="userid" name="id" placeholder="아이디" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="ps" placeholder="비밀번호" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password-confirm" placeholder="비밀번호 확인" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="nickname" name="nickname" placeholder="닉네임" required>
+            </div>
+
+            <button type="submit" class="login-button">회원가입</button>
+            <button type="button" class="signup-button" onclick="showTerms()">약관 확인</button>
+        </form>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        $("#signupForm").submit(function(event) {
+            event.preventDefault();
+            
+            const password = $("#password").val();
+            const passwordConfirm = $("#password-confirm").val();
+
+            if (password !== passwordConfirm) {
+                alert('비밀번호가 일치하지 않습니다.');
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "jsp/signup.jsp",
+                data: $(this).serialize(),
+                success: function(response) {
+                    console.log("Response:", response); // 디버깅용
+                    const result = response.trim();
+                    if (result === "OK") {
+                        alert("회원가입이 완료되었습니다.");
+                        window.location.href = "login.html";
+                    }
+                    else if (result === "EX") {
+                        alert("이미 존재하는 아이디입니다.");
+                    }
+                    else {
+                        alert("회원가입 처리 중 오류가 발생했습니다.");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error:", error); // 디버깅용
+                    alert("서버 통신 중 오류가 발생했습니다.");
+                }
+            });
+        });
+    });
+
+    function showTerms() {
+        alert('약관 내용이 표시됩니다.');
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: #000;
+    transition: background-color 0.5s ease;
+    overflow: hidden;
+}
+
+body.inverted {
+    background-color: #fff;
+}
+
+body.inverted .button:hover {
+    background-color: #ff6666; 
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(255, 153, 153, 0.3);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.circle-button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; 
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    width: 100%;
+    max-width: 1200px; 
+    padding: 2rem; 
+    box-sizing: border-box;
+}
+
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 5;
+    background: radial-gradient(circle at center, #0066ff 0%, transparent 75%);
+    transition: all 0.5s ease;
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.1);
+}
+
+body.inverted .circle {
+    background: radial-gradient(circle at center, #ff9999 0%, transparent 75%);
+    box-shadow: 0 0 30px 10px rgba(255, 153, 153, 0.1);
+}
+
+.button {
+    padding: 12px 32px;
+    border: none;
+    border-radius: 9999px;
+    background-color: #111111;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.15);
+}
+
+body.inverted .button {
+    background-color: #fff;
+    color: #ff9999;
+    box-shadow: 0 8px 24px rgba(255, 153, 153, 0.5),
+                0 15px 30px rgba(255, 255, 255, 0.2);
+}
+
+.button:hover {
+    background-color: #0066ff;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 0, 255, 0.3);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+/* 팝업 상자 */
+.popup-box {
+    width: 400px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: fixed;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all 0.6s ease-out;
+    box-shadow: 0 8px 24px rgba(255, 153, 153, 0.5);
+    text-align: center;
+}
+
+.popup-box:hover {
+    transform: translateX(-50%) scale(1.1);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.popup-box.show {
+    top: 20px;
+    opacity: 1;
+}
+
+.popup-box p {
+    font-size: 20px;
+    margin: 25px;
+    color: #ff9999;
+    text-align: center;
+    font-family: "EB Garamond", serif;
+    font-optical-sizing: auto;
+    font-weight: 400px;
+    font-style: normal;
+}
+
+/* 하단 상자 컨테이너 */
+.box-container {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    opacity: 0;
+    transition: all 0.6s ease-out;
+}
+
+.box-container.show {
+    bottom: 50px;
+    opacity: 1;
+}
+
+.box {
+    width: 25vw;
+    max-width: 300px;
+    height: 150px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(255, 153, 153, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+
+.box p {
+    font-size: 18px;
+    color: #ff9999;
+    font-family: "EB Garamond", serif;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* 전체 페이지 레이아웃 설정 */
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    gap: 4rem;
+    padding: 1rem; 
+    position: relative;
+    box-sizing: border-box;
+}
+
+.circle-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; 
+    position: relative; 
+    z-index: 10; 
+}
+
+/* 상단 버튼 스타일 */
+#top-right-button,
+#github-button,
+#signIn-button {
+    position: fixed;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #111111;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    z-index: 100;
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 각 버튼의 위치 개별 지정 */
+#top-right-button {
+    top: 30px;
+    right: 60px;
+}
+
+#github-button {
+    top: 90px;  /* 첫 번째 버튼 아래로 */
+    right: 60px;
+}
+
+#signIn-button {
+    top: 150px; /* 두 번째 버튼 아래로 */
+    right: 60px;
+}
+
+#top-right-button:hover,
+#github-button:hover,
+#signIn-button:hover {
+    background-color: #0066ff;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* 반전된 상태에서 버튼 */
+body.inverted #top-right-button,
+body.inverted #github-button,
+body.inverted #signIn-button {
+    background-color: #fff;
+    color: #ff9999;
+    box-shadow: 0 8px 24px rgba(255, 153, 153, 0.3);
+}
+
+body.inverted #top-right-button:hover,
+body.inverted #github-button:hover,
+body.inverted #signIn-button:hover {
+    background-color: #ff9999;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(255, 153, 153, 0.3);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        gap: 2rem;
+    }
+
+    .box-container {
+        flex-direction: column;
+    }
+
+    .box {
+        width: 80vw;
+        max-width: none;
+        height: auto;
+    }
+
+    .circle {
+        width: 150px;
+        height: 150px;
+    }
+
+    .button {
+        font-size: 12px;
+        padding: 10px 28px;
+    }
+
+    #top-right-button,
+    #github-button,
+    #signIn-button {
+        font-size: 14px;
+        padding: 8px 16px;
+        right: 20px;
+    }
+
+    #github-button {
+        top: 80px;
+    }
+
+    #signIn-button {
+        top: 130px;
+    }
+}
+
+@media (max-width: 480px) {
+    #top-right-button,
+    #github-button,
+    #signIn-button {
+        font-size: 12px;
+        padding: 6px 12px;
+        right: 10px;
+    }
+
+    #github-button {
+        top: 70px;
+    }
+
+    #signIn-button {
+        top: 120px;
+    }
+}
