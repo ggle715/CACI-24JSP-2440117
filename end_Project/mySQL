@@ -1,0 +1,20 @@
+SHOW DATABASES;
+USE wave;
+SHOW TABLES;
+
+SELECT User, Host FROM mysql.user;
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY '1234';
+FLUSH PRIVILEGES;
+
+SELECT * FROM user WHERE id = 'manager';
+
+CREATE TABLE board (
+    no INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    author VARCHAR(128),
+    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    view_count INT DEFAULT 0
+);
+
